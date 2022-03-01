@@ -1,4 +1,3 @@
-// https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js
 import * as React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import createEmotionServer from "@emotion/server/create-instance";
@@ -11,6 +10,12 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           {/* PWA primary color */}
+          <meta property="og:title" content="NextJS Boilerplate" />
+          <link rel="shortcut icon" href="/favicon.ico" />
+          <meta name="keywords" content="Nextjs, Material-UI, Recoil" />
+          <meta name="description" content="Devto clone" />
+          <meta name="viewport" content="initial-scale=1, width=device-width" />
+          <meta name="theme-color" content={theme.palette.primary.main} />
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
