@@ -19,6 +19,9 @@ export default function MyApp(props: MyAppProps) {
       <CacheProvider value={emotionCache}>
         <Head>
           <title>MUI5 Nextjs</title>
+          <link rel="shortcut icon" href="/favicon.ico" />
+          <meta name="keywords" content="Nextjs, Material-UI, Recoil" />
+          <meta name="description" content="Boilerplate for Nextjs+Typescript projects" />
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
         <ThemeProvider theme={theme}>
