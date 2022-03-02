@@ -14,6 +14,7 @@ export default class MyDocument extends Document {
           <link rel="shortcut icon" href="/favicon.ico" />
           <meta name="keywords" content="Nextjs, Material-UI, Recoil" />
           <meta name="description" content="" />
+          <meta name="author" content="Mekan Allanov" />
           <meta name="viewport" content="initial-scale=1, width=device-width" />
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
