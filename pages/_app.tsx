@@ -4,6 +4,7 @@ import createEmotionCache from "../utils/createEmotionCache";
 import theme from "../theme/theme";
 import { RecoilRoot } from "recoil";
 import { AppProps } from "next/app";
+import Head from "next/head";
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
@@ -16,6 +17,9 @@ export default function MyApp(props: MyAppProps) {
   return (
     <RecoilRoot>
       <CacheProvider value={emotionCache}>
+        <Head>
+          <meta name="viewport" content="initial-scale=1, width=device-width" />
+        </Head>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Component {...pageProps} />
