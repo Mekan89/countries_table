@@ -17,6 +17,7 @@
         "@mui/material": "^5.10.14",
         "@mui/system": "^5.10.14",
         "jotai": "^1.11.1",
+        "mapbox-gl": "^2.11.1",
         "next": "^12.3.3",
         "next-themes": "^0.2.1",
         "react": "^18.2.0",

@@ -1,47 +1,41 @@
-import { Container, Stack } from "@mui/system";
+import CircularProgress from "@mui/material/CircularProgress";
+import Container from "@mui/system/Container";
+import Stack from "@mui/system/Stack";
 import { useAtomValue } from "jotai";
-import useSWR from "swr";
-import Filter from "../src/components/Filter";
+import CountryList from "../src/components/CountryList";
 import Header from "../src/components/Header";
-import Results from "../src/components/Results";
+import Regions from "../src/components/Regions";
+import useRequest from "../src/hooks/useRequest";
 import { keywordAtom, regionAtom } from "../src/state";
-import { CountryProps, FilteredCountryProps } from "../src/utils/types";
-
-export const fetcher = (args: string) => fetch(args).then(res => res.json());
+import { Center } from "../styles";
 
 function Home() {
     const keyword = useAtomValue(keywordAtom);
     const region = useAtomValue(regionAtom);
-    const url = "https://restcountries.com/v3.1/all";
+    const { dataList, error } = useRequest("https://restcountries.com/v3.1/all");
 
-    const { data, error } = useSWR<CountryProps[]>(url, fetcher, {
-        revalidateIfStale: false,
-        revalidateOnFocus: false,
-        revalidateOnReconnect: false,
-    });
-
-    if (error) return <div>Failed to load</div>;
-    if (!data) return <div>Loading...</div>;
-
-    const dataFiltering = data?.map((country): FilteredCountryProps => {
-        const { name, cca2, capital, region, subregion, latlng, borders, flags, gini, continents, population, area } = country;
-        return { name: name.common, cca2, capital, region, subregion, latlng, borders, continents, population, area, flags, gini: Object.values(gini || 0)[0] || 0 };
-    });
-
-    const searchCountries =
-        region !== "all"
-            ? dataFiltering?.filter(country => country.region.toLowerCase().includes(region.toLowerCase()) && country.name.toLowerCase().includes(keyword.toLowerCase()))
-            : dataFiltering?.filter(country => country.name.toLowerCase().includes(keyword.toLowerCase()));
+    const filterCountry_1 = region !== "all" ? dataList?.filter(country => country.region.toLowerCase().includes(region.toLowerCase())) : dataList;
+    const filterCountry_2 = filterCountry_1?.filter(country => country.name.toLowerCase().includes(keyword.toLowerCase()));
 
     return (
         <>
-            <Header />
-            <Container maxWidth='md'>
-                <Stack justifyContent='center' spacing={3} alignItems='center'>
-                    <Filter />
-                    <Results countries={searchCountries} />
-                </Stack>
-            </Container>
+            {error ? (
+                <Center height='100vh'>
+                    <h2>Error Loading data. </h2>
+                </Center>
+            ) : !dataList ? (
+                <Center height='100vh'>
+                    <CircularProgress size={40} />
+                </Center>
+            ) : (
+                <Container maxWidth='md'>
+                    <Header />
+                    <Stack justifyContent='center' spacing={3} alignItems='center' mb={10}>
+                        <Regions />
+                        <CountryList countries={filterCountry_2!} />
+                    </Stack>
+                </Container>
+            )}
         </>
     );
 }

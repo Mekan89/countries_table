@@ -1,7 +1,7 @@
 export interface FilteredCountryProps {
     name: string;
-    area: number;
-    cca2: string;
+    officialName: string;
+    cca3: string;
     capital: string[];
     region: String;
     subregion: String;
@@ -11,6 +11,9 @@ export interface FilteredCountryProps {
     gini: number;
     continents: string[];
     population: number;
+    area: number;
+    currencies: Currency;
+    languages: Languages;
 }
 
 export interface CountryProps {
@@ -19,11 +22,10 @@ export interface CountryProps {
     cca2: string;
     ccn3: string;
     cca3: string;
-    cioc: string;
     independent: boolean;
     status: string;
     unMember: boolean;
-    currencies: Currencies;
+    currencies: Currency;
     capital: string[];
     altSpellings: string[];
     region: string;
@@ -33,11 +35,10 @@ export interface CountryProps {
     landlocked: boolean;
     borders: string[];
     area: number;
-    demonyms: Demonyms;
     flag: string;
     maps: Maps;
     population: number;
-    gini: Gini;
+    gini: number;
     fifa: string;
     timezones: string[];
     continents: string[];
@@ -46,48 +47,40 @@ export interface CountryProps {
     capitalInfo: CapitalInfo;
 }
 
-export interface CapitalInfo {
+interface CapitalInfo {
     latlng: number[];
 }
 
-export interface Gini {
-    "2014": number;
-}
-
-export interface Maps {
+interface Maps {
     googleMaps: string;
     openStreetMaps: string;
 }
 
-export interface Name {
+interface Name {
     common: string;
     official: string;
 }
 
-export interface Flags {
+interface Flags {
     png: string;
     svg: string;
 }
 
-export interface Demonyms {
-    eng: Eng;
-    fra: Eng;
-}
-
-export interface Eng {
+interface Eng {
     f: string;
     m: string;
 }
 
 export interface Currencies {
-    MRU: Mru;
+    code: Currency;
 }
 
-export interface Mru {
+export interface Currency {
     name: string;
     symbol: string;
 }
 
 export interface Languages {
-    ara: string;
+    name: string;
+    nativeName: string;
 }

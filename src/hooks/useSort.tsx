@@ -19,12 +19,11 @@ const useSortableData = (items: any[], config: { key: string; direction: string 
         return sortableItems;
     }, [items, sortConfig]);
 
-    const requestSort = (key: any) => {
-        let direction = "descending";
-        if (sortConfig && sortConfig.key === key && sortConfig.direction === "descending") {
-            direction = "ascending";
-        }
-        setSortConfig({ key, direction });
+    const requestSort = (key: string) => {
+        setSortConfig(prevState => {
+            if (prevState.direction === "ascending") return { key, direction: "descending" };
+            return { key, direction: "ascending" };
+        });
     };
 
     return { sortedItems, requestSort, sortConfig };

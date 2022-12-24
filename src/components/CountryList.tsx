@@ -1,7 +1,15 @@
 import ArrowDownward from "@mui/icons-material/ArrowDownward";
 import ArrowUpward from "@mui/icons-material/ArrowUpward";
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, useTheme } from "@mui/material";
-import { red } from "@mui/material/colors";
+import { useTheme } from "@mui/material";
+import red from "@mui/material/colors/red";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Typography from "@mui/material/Typography";
 import { useRouter } from "next/router";
 import { FC, memo } from "react";
 import useSortableData from "../hooks/useSort";
@@ -21,7 +29,7 @@ const SortArrow = ({ direction }: { direction: string }) => {
     return <></>;
 };
 
-const Results: FC<ResultsProps> = ({ countries }: ResultsProps) => {
+const CountryList: FC<ResultsProps> = ({ countries }: ResultsProps) => {
     const { sortedItems, requestSort, sortConfig } = useSortableData(countries, { key: "name", direction: "ascending" });
     const router = useRouter();
     const theme = useTheme();
@@ -42,8 +50,8 @@ const Results: FC<ResultsProps> = ({ countries }: ResultsProps) => {
                 </TableHead>
                 <TableBody>
                     {sortedItems ? (
-                        sortedItems?.map(({ flags, name, population, area, gini, cca2 }) => (
-                            <TableRow hover key={name} onClick={() => router.push(`/${cca2}`)} sx={{ cursor: "pointer" }}>
+                        sortedItems?.map(({ flags, name, population, area, gini, cca3 }) => (
+                            <TableRow hover key={name} onClick={() => router.push(cca3)} sx={{ cursor: "pointer" }}>
                                 <TableCell sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img src={flags.svg} alt={name} width={50} />
@@ -63,4 +71,4 @@ const Results: FC<ResultsProps> = ({ countries }: ResultsProps) => {
     );
 };
 
-export default memo(Results);
+export default memo(CountryList);
