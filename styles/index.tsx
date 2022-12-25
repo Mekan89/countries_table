@@ -11,7 +11,3 @@ export const Flex = styled(Box)({
 export const FlexBetween = styled(Flex)({
     justifyContent: "space-between",
 });
-
-export const Center = styled(Flex)({
-    justifyContent: "center",
-});
