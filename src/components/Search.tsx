@@ -21,7 +21,6 @@ export default function Search() {
     return (
         <Box maxWidth={450} width='100%'>
             <OutlinedInput
-                autoFocus
                 sx={{ background: theme.palette.mode === "light" ? "#fff" : null }}
                 onChange={e => setKeyword(e.target.value.trim())}
                 value={keyword}

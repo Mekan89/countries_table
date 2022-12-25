@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { darkTheme, lightTheme } from ".";
 
 const MUIThemeProvider = ({ children }: { children: React.ReactNode }) => {
-    const { resolvedTheme, theme } = useTheme();
+    const { theme } = useTheme();
     const [currentTheme, setCurrentTheme] = useState(lightTheme);
 
     useEffect(() => {
