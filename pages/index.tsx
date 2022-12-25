@@ -12,9 +12,9 @@ import { Center } from "../styles";
 function Home() {
     const keyword = useAtomValue(keywordAtom);
     const region = useAtomValue(regionAtom);
-    const { dataList, error } = useRequest("https://restcountries.com/v3.1/all");
+    const { countries, error } = useRequest("https://restcountries.com/v3.1/all");
 
-    const filterCountry_1 = region !== "all" ? dataList?.filter(country => country.region.toLowerCase().includes(region.toLowerCase())) : dataList;
+    const filterCountry_1 = region !== "all" ? countries?.filter(country => country.region.toLowerCase().includes(region.toLowerCase())) : countries;
     const filterCountry_2 = filterCountry_1?.filter(country => country.name.toLowerCase().includes(keyword.toLowerCase()));
 
     return (
@@ -23,7 +23,7 @@ function Home() {
                 <Center height='100vh'>
                     <h2>Error Loading data. </h2>
                 </Center>
-            ) : !dataList ? (
+            ) : !countries ? (
                 <Center height='100vh'>
                     <CircularProgress size={40} />
                 </Center>

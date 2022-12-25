@@ -1,7 +1,7 @@
 export interface FilteredCountryProps {
     name: string;
     officialName: string;
-    cca3: string;
+    cca2: string;
     capital: string[];
     region: String;
     subregion: String;
@@ -20,8 +20,7 @@ export interface CountryProps {
     name: Name;
     tld: string[];
     cca2: string;
-    ccn3: string;
-    cca3: string;
+    cioc: string;
     independent: boolean;
     status: string;
     unMember: boolean;
@@ -44,11 +43,6 @@ export interface CountryProps {
     continents: string[];
     flags: Flags;
     startOfWeek: string;
-    capitalInfo: CapitalInfo;
-}
-
-interface CapitalInfo {
-    latlng: number[];
 }
 
 interface Maps {

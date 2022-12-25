@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import { CountryProps, FilteredCountryProps } from "../utils/types";
 
-export const fetcher = (args: string) => fetch(args).then(res => res.json());
+const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 const useRequest = (url: string) => {
     const { data, error } = useSWR<CountryProps[]>(url, fetcher, {
@@ -10,14 +10,14 @@ const useRequest = (url: string) => {
         revalidateOnReconnect: false,
     });
 
-    const dataList = data?.map((country): FilteredCountryProps => {
-        const { name, currencies, languages, cca3, capital, region, subregion, latlng, borders, flags, gini, continents, population, area } = country;
+    const countries = data?.map((country): FilteredCountryProps => {
+        const { name, currencies, languages, cca2, capital, region, subregion, latlng, borders, flags, gini, continents, population, area } = country;
         return {
             name: name.common,
             officialName: name.official,
             currencies,
             languages,
-            cca3,
+            cca2,
             capital,
             region,
             subregion,
@@ -30,7 +30,7 @@ const useRequest = (url: string) => {
             gini: Object.values(gini || 0)[0] || 0,
         };
     });
-    return { dataList, error };
+    return { countries, error };
 };
 
 export default useRequest;

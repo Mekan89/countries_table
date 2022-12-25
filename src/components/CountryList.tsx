@@ -50,8 +50,8 @@ const CountryList: FC<ResultsProps> = ({ countries }: ResultsProps) => {
                 </TableHead>
                 <TableBody>
                     {sortedItems ? (
-                        sortedItems?.map(({ flags, name, population, area, gini, cca3 }) => (
-                            <TableRow hover key={name} onClick={() => router.push(cca3)} sx={{ cursor: "pointer" }}>
+                        sortedItems?.map(({ flags, name, population, area, gini, cca2 }) => (
+                            <TableRow hover key={name} onClick={() => router.push(cca2)} sx={{ cursor: "pointer" }}>
                                 <TableCell sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img src={flags.svg} alt={name} width={50} />
