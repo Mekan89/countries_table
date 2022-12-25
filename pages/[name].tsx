@@ -3,7 +3,7 @@ import Chip from "@mui/material/Chip";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { Box } from "@mui/system";
+import Box from "@mui/system/Box";
 import Container from "@mui/system/Container";
 import dynamic from "next/dynamic";
 import Head from "next/head";
@@ -11,9 +11,10 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import Header from "../src/components/Header";
+import MyMap from "../src/components/MyMap";
 import { CountryProps } from "../src/utils/types";
 
-const Map = dynamic(() => import("../components/MyMap"), {
+const Map = dynamic(() => import("../src/components/MyMap"), {
     ssr: false,
 });
 
@@ -118,7 +119,7 @@ export default function Country() {
                                     </Stack>
                                 </Stack>
                             </Stack>
-                            <Map latlong={latlng} />
+                            <MyMap latlong={latlng} />
                         </Box>
                     );
                 })}
