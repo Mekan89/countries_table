@@ -11,7 +11,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import Header from "../src/components/Header";
-import MyMap from "../src/components/MyMap";
 import { CountryProps } from "../src/utils/types";
 
 const Map = dynamic(() => import("../src/components/MyMap"), {
@@ -119,7 +118,7 @@ export default function Country() {
                                     </Stack>
                                 </Stack>
                             </Stack>
-                            <MyMap latlong={latlng} />
+                            <Map latlong={latlng} />
                         </Box>
                     );
                 })}
